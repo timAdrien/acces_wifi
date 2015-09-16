@@ -17,13 +17,13 @@ and open the template in the editor.
             <div  class="row vertical-center-row" >
                 <div id="connector" class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" >
 
-                    <form id="form_connector" name="login" class="form-horizontal" method="post" accept-charset="utf-8">
+                    <form action="user_connection.php" id="form_connector" name="login" class="form-horizontal" method="post" accept-charset="utf-8">
                         <div class="form-group">
-                            <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
+                            <div class="col-md-8"><input name="mail" placeholder="Adresse Mail" class="form-control" type="text" id="UserUsername"/></div>
                         </div> 
 
                         <div class="form-group">
-                            <div class="col-md-8"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
+                            <div class="col-md-8"><input name="mdp" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
                         </div> 
 
                         <div class="form-group">
@@ -36,6 +36,6 @@ and open the template in the editor.
             </div>
 
         </div>
-        <footer><p>Développé par Yoann et Timothée. Et ça marche</p></footer>
+        <footer><p>Développé par Yoann et Timothée. Et ça marche !</p></footer>
     </body>
 </html>
