@@ -1,0 +1,17 @@
+
+/* 
+    Created on : 11 sept. 2015, 09:21:13
+    Author     : ADRIEN Timothée
+*/
+
+footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    background-color: grey;
+    color:white;
+    text-align: center;
+    line-height: 30px;
+}

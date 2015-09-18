@@ -1,0 +1,26 @@
+
+/* 
+    Created on : 11 sept. 2015, 09:21:25
+    Author     : ADRIEN Timothée
+*/
+
+html, body, .container{
+    height: 100%;
+}
+.container{
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#connector {
+    border: 1px solid;
+    box-shadow: 6px 6px 3px #888888;
+}
+
+#form_connector {
+    padding:5% 0 0 30%;
+}
