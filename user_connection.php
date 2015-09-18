@@ -25,11 +25,7 @@ include 'espace_membre.php';
         try {
             $res = $connec->query('SELECT name, firstname FROM user WHERE mail = "' . $mail . '" AND password ="' . $password . '"');
             if ($row = $res->fetch(PDO::FETCH_OBJ)) {
-
-                echo $row->name . ' ' . $row->firstname . 'Vous êtes à présent connecté !';
-            } else {
                 $_SESSION['mail'] = $mail;
-                $_SESSION['erreur']= 'Adresse mail ou mot de passe invalide.';
 // la fonction de redirection ------------ 
                 function redir($url) {
                     echo "<script language=\"javascript\">";
@@ -37,6 +33,16 @@ include 'espace_membre.php';
                     echo "</script>";
                 }
 // Utiliser la redirection --------------- 
+                redir("gestion_periph.php");
+            } else {
+                $_SESSION['mail'] = $mail;
+                $_SESSION['erreur']= 'Adresse mail ou mot de passe invalide.';
+
+                function redir($url) {
+                    echo "<script language=\"javascript\">";
+                    echo "window.location='$url';";
+                    echo "</script>";
+                }
                 redir("index.php");
             }
         } catch (PDOException $e) {
