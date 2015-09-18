@@ -1,5 +1,11 @@
+<?php
+include 'espace_membre.php';
+if ((!isset($_SESSION['mail'])) && (!isset($_SESSION['erreur']))) {
+    $_SESSION['mail'] = '';
+    $_SESSION['erreur']= '';
+}
+?>
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -15,13 +21,13 @@
 
                     <form action="user_connection.php" id="form_connector" name="login" class="form-horizontal" method="post" accept-charset="utf-8">
                         <div class="form-group">
-                            <div class="col-md-8"><input name="mail" placeholder="Adresse Mail" class="form-control" type="text" id="UserUsername"/></div>
+                            <div class="col-md-8"><input name="mail" placeholder="Adresse Mail" value="<?php echo $_SESSION['mail']; ?>" class="form-control" type="text" id="UserUsername"/></div>
                         </div> 
 
                         <div class="form-group">
                             <div class="col-md-8"><input name="mdp" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
                         </div> 
-
+                        <p style="color:red;"><?php echo $_SESSION['erreur']; ?></p>
                         <div class="form-group">
                             <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
                         </div>
@@ -30,7 +36,10 @@
 
                 </div>
             </div>
-
+            <?php
+                $_SESSION['mail'] = '';
+                $_SESSION['erreur']= '';
+            ?>
         </div>
         <footer><p>Développé par Yoann et Timothée. Et ça marche !</p></footer>
     </body>

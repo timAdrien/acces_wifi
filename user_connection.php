@@ -1,32 +1,50 @@
 <?php
-try{
+include 'espace_membre.php';
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" >
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/connexion.css" />
+        <title>Demande accès Wi-Fi</title>
+    </head>
+    <body>
+        <?php
+        try {
 //on se connecte à la base de données:
-$connec = new PDO('mysql:host=127.0.0.1; dbname=db_acces_wifi', 'timyo', '123456');
-//$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}catch (PDOException $e){
-    echo 'PB de connection à la BDD';
-}
+            $connec = new PDO('mysql:host=127.0.0.1; dbname=db_acces_wifi', 'timyo', '123456');
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
 
-$password = 'bite';
+        $mail = $_POST['mail'];
+        $password = $_POST['mdp'];
 
-$req = 'SELECT *';
-$req .= 'FROM user';
-$req .= 'WHERE firstname = "Yoann" ';
-//$req .= $password;
-try{
-$res = $connec->query($req);
-while ($row = $res->fetch(PDO::FETCH_OBJ)) {
-    if (!empty($row)) {
+        try {
+            $res = $connec->query('SELECT name, firstname FROM user WHERE mail = "' . $mail . '" AND password ="' . $password . '"');
+            if ($row = $res->fetch(PDO::FETCH_OBJ)) {
 
-        echo $row->name;
+                echo $row->name . ' ' . $row->firstname . 'Vous êtes à présent connecté !';
+            } else {
+                $_SESSION['mail'] = $mail;
+                $_SESSION['erreur']= 'Adresse mail ou mot de passe invalide.';
+// la fonction de redirection ------------ 
+                function redir($url) {
+                    echo "<script language=\"javascript\">";
+                    echo "window.location='$url';";
+                    echo "</script>";
+                }
+// Utiliser la redirection --------------- 
+                redir("index.php");
+            }
+        } catch (PDOException $e) {
+            echo 'requête plantée';
+        }
 
-        echo 'Vous êtes à présent connecté !';
-    } else {
-        echo 'Vous êtes à tyer !';
-    }
-}
-
-    }catch(PDOException $e){
-    echo 'requête plantée';
-}
-
+        unset($connec);
+        ?>
+        <footer><p>Développé par Yoann et Timothée. Et ça marche !</p></footer>
+    </body>
+</html>
