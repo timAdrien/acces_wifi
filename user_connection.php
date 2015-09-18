@@ -9,7 +9,7 @@ $connec = new PDO('mysql:host=127.0.0.1; dbname=db_acces_wifi', 'timyo', '123456
 
 $password = 'bite';
 
-$req = 'SELECT name';
+$req = 'SELECT *';
 $req .= 'FROM user';
 $req .= 'WHERE firstname = "Yoann" ';
 //$req .= $password;
